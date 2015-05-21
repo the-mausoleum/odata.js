@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OData.js</title>
+
+    <script src="../src/odata.js"></script>
+</head>
+<body>
+    <div>
+
+    </div>
+    <script>
+        var odata = new OData();
+
+        console.log(odata)
+
+        var query = odata
+            .query('http://services.odata.org/OData/OData.svc/Products')
+            .select('Name')
+            .select('Price')
+            .build();
+
+        console.log(query)
+    </script>
+</body>
+</html>
