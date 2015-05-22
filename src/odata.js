@@ -700,7 +700,9 @@ var OData = (function () {
 
         Filter.prototype.next = function () {
 
-            include('$filter');
+            if (_filter.length > 0) {
+                include('$filter');
+            }
 
             return this;
 
