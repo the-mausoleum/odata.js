@@ -86,7 +86,7 @@ var OData = (function () {
 
     OData.prototype.inlineCount = function (option) {
 
-        if (option == false || option === 'none') {
+        if (option === false || option === 0 || option === 'none') {
             _inlineCount = 'none';
         } else {
             _inlineCount = 'allpages';
