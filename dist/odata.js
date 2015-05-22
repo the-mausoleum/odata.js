@@ -598,6 +598,22 @@ var OData = (function () {
 
         };
 
+        Filter.prototype.indexOf = function (lhs, rhs) {
+
+            _filter.push('indexof(' + lhs + ', \'' + rhs + '\')');
+
+            return this;
+
+        };
+
+        Filter.prototype.replace = function (property, find, replace) {
+
+            _filter.push('replace(' + property + ', \'' + find + ', \'' + replace + '\')');
+
+            return this;
+
+        };
+
         Filter.prototype.year = function (lhs) {
 
             _filter.push('year(' + lhs + ')');
@@ -641,6 +657,42 @@ var OData = (function () {
         Filter.prototype.second = function (lhs) {
 
             _filter.push('second(' + lhs + ')');
+
+            return this;
+
+        };
+
+        Filter.prototype.round = function (property) {
+
+            _filter.push('round(' + property + ')');
+
+            return this;
+
+        };
+
+        Filter.prototype.floor = function (property) {
+
+            _filter.push('floor(' + property + ')');
+
+            return this;
+
+        };
+
+        Filter.prototype.ceiling = function (property) {
+
+            _filter.push('ceiling(' + property + ')');
+
+            return this;
+
+        };
+
+        Filter.prototype.isOf = function (lhs, rhs) {
+
+            if (lhs !== null && typeof rhs === 'undefined') {
+                _filter.push('isof(\'' + lhs + '\')');
+            } else {
+                _filter.push('isof(' + lhs + ', \'' + rhs + '\')');
+            }
 
             return this;
 

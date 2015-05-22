@@ -17,7 +17,7 @@
         var query = odata
             .filter(function (filter) {
                 return filter
-                    .substringof('AuthenticationCode', 'ABC')
+                    .isOf('Name', 'Edm.String')
                     .next();
             })
             .query();
