@@ -17,8 +17,10 @@ var OData = (function () {
     var _orderbyOrder = 'asc';
     var _top = 0;
     var _skip = 0;
+    var _inlineCount = 'allpages';
     var _select = [];
     var _expand = [];
+    var _format = 'application/json';
 
     var OData = function () {
 
@@ -84,6 +86,22 @@ var OData = (function () {
 
     };
 
+    OData.prototype.inlineCount = function (option) {
+
+        if (option) {
+            _inlineCount = 'allpages';
+
+            return this;
+        }
+
+        _inlineCount = 'none';
+
+        return this;
+
+    };
+
+    OData.prototype.count = OData.prototype.inlineCount;
+
     OData.prototype.select = function (item) {
 
         _select.push(item);
@@ -97,6 +115,47 @@ var OData = (function () {
         _expand.push(item);
 
         return this;
+
+    };
+
+    OData.prototype.format = function (format) {
+
+        switch (format.toLowerCase()) {
+            case 'atom':
+            case 'application/atom+xml':
+                _format = 'atom';
+                break;
+            case 'xml':
+            case 'application/xml':
+                _format = 'xml';
+                break;
+            case 'json':
+            case 'application/json':
+                _format = 'json';
+                break;
+            default:
+                _format = 'json';
+        }
+
+        return this;
+
+    };
+
+    OData.prototype.atom = function () {
+
+        return OData.prototype.format.apply(this, ['atom']);
+
+    };
+
+    OData.prototype.json = function () {
+
+        return OData.prototype.format.apply(this, ['json']);
+
+    };
+
+    OData.prototype.xml = function () {
+
+        return OData.prototype.format.apply(this, ['xml']);
 
     };
 
@@ -133,7 +192,9 @@ var OData = (function () {
         buildExpand(params);
         buildSkip(params);
         buildTop(params);
+        buildInlineCount(params);
         buildOrderBy(params);
+        buildFormat(params);
 
         return params;
 
@@ -167,6 +228,14 @@ var OData = (function () {
 
     };
 
+    var buildInlineCount = function (params) {
+
+        params.$inlinecount = _inlineCount;
+
+        return params;
+
+    };
+
     var buildSelect = function (params) {
 
         if (_select.length < 1) {
@@ -186,6 +255,14 @@ var OData = (function () {
         }
 
         params.$expand = _expand.join(',');
+
+        return params;
+
+    };
+
+    var buildFormat = function (params) {
+
+        params.$format = _format;
 
         return params;
 
