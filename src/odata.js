@@ -2,6 +2,8 @@ var OData = (function () {
 
     'use strict';
 
+    var _include = [];
+
     var _url = '';
     var _orderby = [];
     var _orderbyOrder = 'asc';
@@ -16,7 +18,7 @@ var OData = (function () {
 
     };
 
-    OData.prototype.query = function (url) {
+    OData.prototype.url = function (url) {
 
         _url = url;
 
@@ -27,6 +29,8 @@ var OData = (function () {
     OData.prototype.orderby = function (item) {
 
         _orderby.push(item);
+
+        include('$orderby');
 
         return this;
 
@@ -60,6 +64,8 @@ var OData = (function () {
 
         _top = n;
 
+        include('$top');
+
         return this;
 
     };
@@ -72,11 +78,15 @@ var OData = (function () {
 
         _skip = n;
 
+        include('$skip');
+
         return this;
 
     };
 
     OData.prototype.inlineCount = function (option) {
+
+        include('$inlinecount');
 
         if (option) {
             _inlineCount = 'allpages';
@@ -96,6 +106,8 @@ var OData = (function () {
 
         _select.push(item);
 
+        include('$select');
+
         return this;
 
     };
@@ -103,6 +115,8 @@ var OData = (function () {
     OData.prototype.expand = function (item) {
 
         _expand.push(item);
+
+        include('$expand');
 
         return this;
 
@@ -127,6 +141,8 @@ var OData = (function () {
                 _format = 'json';
         }
 
+        include('$format');
+
         return this;
 
     };
@@ -149,28 +165,44 @@ var OData = (function () {
 
     };
 
-    OData.prototype.build = function () {
+    OData.prototype.query = function () {
 
-        var query = '';
+        var query;
         var params = getParams();
 
-        for (var i in params) {
-            if (!i) {
-                continue;
+        if (_url) {
+            query = '';
+
+            for (var i in params) {
+                if (!i) {
+                    continue;
+                }
+
+                if (!params[i]) {
+                    continue;
+                }
+
+                query += i + '=' + params[i] + '&';
             }
 
-            if (!params[i]) {
-                continue;
+            if (query.lastIndexOf('&') === query.length - 1) {
+                query = query.slice(0, query.length - 1);
             }
+        } else {
+            query = {};
 
-            query += i + '=' + params[i] + '&';
-        }
-
-        if (query.lastIndexOf('&') === query.length - 1) {
-            query = query.slice(0, query.length - 1);
+            _include.forEach(function (value) {
+                query[value] = params[value];
+            });
         }
 
         return query;
+
+    };
+
+    var include = function (param) {
+
+        _include.push(param);
 
     };
 

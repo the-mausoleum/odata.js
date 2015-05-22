@@ -15,16 +15,15 @@
         console.log(odata)
 
         var query = odata
-            .query('http://services.odata.org/OData/OData.svc/Products')
             .select('Name')
             .select('Price')
             .orderby('Name')
             .desc()
             .top(5)
             .skip(1)
-            .inlineCount()
+            .count(true)
             .json()
-            .build();
+            .query();
 
         console.log(query)
     </script>
