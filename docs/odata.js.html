@@ -30,18 +30,23 @@
 
     'use strict';
 
-    var _include = [];
+    var _include, _url, _orderby, _orderbyOrder, _top, _skip, _inlineCount, _select, _expand, _filter, _format;
 
-    var _url = '';
-    var _orderby = [];
-    var _orderbyOrder = 'asc';
-    var _top = 0;
-    var _skip = 0;
-    var _inlineCount = 'allpages';
-    var _select = [];
-    var _expand = [];
-    var _filter = [];
-    var _format = 'json';
+    var init = function () {
+
+        _include = [];
+        _url = '';
+        _orderby = [];
+        _orderbyOrder = 'asc';
+        _top = 0;
+        _skip = 0;
+        _inlineCount = 'allpages';
+        _select = [];
+        _expand = [];
+        _filter = [];
+        _format = 'json';
+
+    };
 
     /**
      * Creates a new OData instance.
@@ -49,11 +54,14 @@
      */
     var OData = function () {
 
+        init();
+
     };
 
     /**
      * @function url
      * @description Sets the URL to construct OData queries against.
+        If not set, calling {@link OData#query|query} will return the OData query parameters as an object.
      * @param {String} url - The URL to use.
      * @memberof OData
      * @instance
@@ -169,6 +177,17 @@
 
     };
 
+    /**
+     * @function inlineCount
+     * @description Include a count of all the items in the data set in the response.
+        If used in conjunction with {@link OData#filter|filter}, the filtering will take place &lt;em>before&lt;/em> the count.
+        Truthy values (e.g., true, 1) as the argument will set the value to 'allpages'.
+        Falsy values (e.g., false, 0) as the argument will set the value to 'none'.
+        Not passing in a parameter will set the value to 'allpages'.
+     * @param {(Boolean|Integer|String)} option - Possible values are 'allpages' and 'none'.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.inlineCount = function (option) {
 
         if (option === false || option === 0 || option === 'none') {
@@ -183,6 +202,13 @@
 
     };
 
+    /**
+     * @function count
+     * @description Shorthand function for {@link OData#inlineCount|inlineCount}.
+        Calling without arguments will set the value of inlineCount to &lt;code>'allpages'&lt;/code>.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.count = OData.prototype.inlineCount;
 
     /**
@@ -226,6 +252,7 @@
          * @param {*} value - The value use in the equality check.
          * @memberof Filter
          * @instance
+         * @variation 1
          */
 
         /**
@@ -234,6 +261,7 @@
          * @param {*} value - The value use in the equality check.
          * @memberof Filter
          * @instance
+         * @variation 2
          */
         Filter.prototype.equal = function (lhs, rhs) {
 
@@ -245,19 +273,21 @@
 
         /**
          * @function eq
-         * @description Shorthand function for {@link Filter#equal|equal}.
+         * @description Shorthand function for {@link Filter#equal(1)|equal}.
          * @param {String} property - The property to use.
          * @param {*} value - The value use in the equality check.
          * @memberof Filter
          * @instance
+         * @variation 1
          */
 
         /**
          * @function eq
-         * @description Shorthand function for {@link Filter#equal|equal}.
+         * @description Shorthand function for {@link Filter#equal(2)|equal}.
          * @param {*} value - The value use in the equality check.
          * @memberof Filter
          * @instance
+         * @variation 2
          */
         Filter.prototype.eq = Filter.prototype.equal;
 
@@ -268,6 +298,7 @@
          * @param {*} value - The value use in the inequality check.
          * @memberof Filter
          * @instance
+         * @variation 1
          */
 
         /**
@@ -276,6 +307,7 @@
          * @param {*} value - The value use in the inequality check.
          * @memberof Filter
          * @instance
+         * @variation 2
          */
         Filter.prototype.notEqual = function (lhs, rhs) {
 
@@ -287,19 +319,21 @@
 
         /**
          * @function ne
-         * @description Shorthand function for {@link Filter#notEqual|notEqual}.
+         * @description Shorthand function for {@link Filter#notEqual(1)|notEqual}.
          * @param {String} property - The property to use.
          * @param {*} value - The value use in the inequality check.
          * @memberof Filter
          * @instance
+         * @variation 1
          */
 
         /**
          * @function ne
-         * @description Shorthand function for {@link Filter#notEqual|notEqual}.
+         * @description Shorthand function for {@link Filter#notEqual(2)|notEqual}.
          * @param {*} value - The value use in the inequality check.
          * @memberof Filter
          * @instance
+         * @variation 2
          */
         Filter.prototype.ne = Filter.prototype.notEqual;
 
@@ -525,6 +559,10 @@
 
         };
 
+        if (typeof callback !== typeof Function) {
+            return this;
+        }
+
         return callback(new Filter());
 
     };
@@ -620,6 +658,8 @@
                 query[value] = params[value];
             });
         }
+
+        init();
 
         return query;
 
@@ -743,7 +783,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Fri May 22 2015 10:51:43 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Fri May 22 2015 13:47:45 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

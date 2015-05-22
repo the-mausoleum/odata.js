@@ -33,6 +33,7 @@ var OData = (function () {
     /**
      * @function url
      * @description Sets the URL to construct OData queries against.
+        If not set, calling {@link OData#query|query} will return the OData query parameters as an object.
      * @param {String} url - The URL to use.
      * @memberof OData
      * @instance
@@ -148,6 +149,17 @@ var OData = (function () {
 
     };
 
+    /**
+     * @function inlineCount
+     * @description Include a count of all the items in the data set in the response.
+        If used in conjunction with {@link OData#filter|filter}, the filtering will take place <em>before</em> the count.
+        Truthy values (e.g., true, 1) as the argument will set the value to 'allpages'.
+        Falsy values (e.g., false, 0) as the argument will set the value to 'none'.
+        Not passing in a parameter will set the value to 'allpages'.
+     * @param {(Boolean|Integer|String)} option - Possible values are 'allpages' and 'none'.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.inlineCount = function (option) {
 
         if (option === false || option === 0 || option === 'none') {
@@ -162,6 +174,13 @@ var OData = (function () {
 
     };
 
+    /**
+     * @function count
+     * @description Shorthand function for {@link OData#inlineCount|inlineCount}.
+        Calling without arguments will set the value of inlineCount to <code>'allpages'</code>.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.count = OData.prototype.inlineCount;
 
     /**
@@ -205,6 +224,7 @@ var OData = (function () {
          * @param {*} value - The value use in the equality check.
          * @memberof Filter
          * @instance
+         * @variation 1
          */
 
         /**
@@ -213,6 +233,7 @@ var OData = (function () {
          * @param {*} value - The value use in the equality check.
          * @memberof Filter
          * @instance
+         * @variation 2
          */
         Filter.prototype.equal = function (lhs, rhs) {
 
@@ -224,19 +245,21 @@ var OData = (function () {
 
         /**
          * @function eq
-         * @description Shorthand function for {@link Filter#equal|equal}.
+         * @description Shorthand function for {@link Filter#equal(1)|equal}.
          * @param {String} property - The property to use.
          * @param {*} value - The value use in the equality check.
          * @memberof Filter
          * @instance
+         * @variation 1
          */
 
         /**
          * @function eq
-         * @description Shorthand function for {@link Filter#equal|equal}.
+         * @description Shorthand function for {@link Filter#equal(2)|equal}.
          * @param {*} value - The value use in the equality check.
          * @memberof Filter
          * @instance
+         * @variation 2
          */
         Filter.prototype.eq = Filter.prototype.equal;
 
@@ -247,6 +270,7 @@ var OData = (function () {
          * @param {*} value - The value use in the inequality check.
          * @memberof Filter
          * @instance
+         * @variation 1
          */
 
         /**
@@ -255,6 +279,7 @@ var OData = (function () {
          * @param {*} value - The value use in the inequality check.
          * @memberof Filter
          * @instance
+         * @variation 2
          */
         Filter.prototype.notEqual = function (lhs, rhs) {
 
@@ -266,19 +291,21 @@ var OData = (function () {
 
         /**
          * @function ne
-         * @description Shorthand function for {@link Filter#notEqual|notEqual}.
+         * @description Shorthand function for {@link Filter#notEqual(1)|notEqual}.
          * @param {String} property - The property to use.
          * @param {*} value - The value use in the inequality check.
          * @memberof Filter
          * @instance
+         * @variation 1
          */
 
         /**
          * @function ne
-         * @description Shorthand function for {@link Filter#notEqual|notEqual}.
+         * @description Shorthand function for {@link Filter#notEqual(2)|notEqual}.
          * @param {*} value - The value use in the inequality check.
          * @memberof Filter
          * @instance
+         * @variation 2
          */
         Filter.prototype.ne = Filter.prototype.notEqual;
 
@@ -485,9 +512,9 @@ var OData = (function () {
         var join = function (lhs, operator, rhs) {
 
             if (lhs !== null && typeof rhs === 'undefined') {
-                _filter.push(joinArithmetic('eq', lhs));
+                _filter.push(joinArithmetic(operator, lhs));
             } else {
-                _filter.push(joinLogical(lhs, 'eq', rhs));
+                _filter.push(joinLogical(lhs, operator, rhs));
             }
 
         };
