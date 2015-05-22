@@ -18,6 +18,7 @@ var OData = (function () {
     var _orderby = [];
     var _orderbyOrder = 'asc';
     var _top = 0;
+    var _skip = 0;
     var _select = [];
     var _expand = [];
 
@@ -73,6 +74,18 @@ var OData = (function () {
 
     };
 
+    OData.prototype.skip = function (n) {
+
+        if (n < 0) {
+            return this;
+        }
+
+        _skip = n;
+
+        return this;
+
+    };
+
     OData.prototype.select = function (item) {
 
         _select.push(item);
@@ -120,6 +133,7 @@ var OData = (function () {
 
         buildSelect(params);
         buildExpand(params);
+        buildSkip(params);
         buildTop(params);
         buildOrderBy(params);
 
@@ -140,6 +154,12 @@ var OData = (function () {
     var buildTop = function (params) {
 
         return params['$top'] = _top;
+
+    };
+
+    var buildSkip = function (params) {
+
+        return params['$skip'] = _skip;
 
     };
 
