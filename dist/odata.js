@@ -86,15 +86,13 @@ var OData = (function () {
 
     OData.prototype.inlineCount = function (option) {
 
-        include('$inlinecount');
-
-        if (option) {
+        if (option == false || option === 'none') {
+            _inlineCount = 'none';
+        } else {
             _inlineCount = 'allpages';
-
-            return this;
         }
 
-        _inlineCount = 'none';
+        include('$inlinecount');
 
         return this;
 
