@@ -157,6 +157,14 @@ var OData = (function () {
 
     OData.prototype.count = OData.prototype.inlineCount;
 
+    /**
+     * @function select
+     * @description Specify a property to be include in the returned data.
+        Use the <code>'*'</code> wildcard to include all properties.
+     * @param {String} property - The property to include in the returned data.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.select = function (item) {
 
         _select.push(item);
@@ -167,12 +175,38 @@ var OData = (function () {
 
     };
 
+    /**
+     * @function filter
+     * @description Set up filters for the data.
+     * @param {Function} callback - The $filter callback.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.filter = function (callback) {
 
+        /**
+         * @class Filter
+         */
         var Filter = function () {
 
         };
 
+        /**
+         * @function equal
+         * @description Check for equality between two objects.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value use in the equality check.
+         * @memberof Filter
+         * @instance
+         */
+
+        /**
+         * @function equal
+         * @description Create an equality statement for a previous expression.
+         * @param {*} value - The value use in the equality check.
+         * @memberof Filter
+         * @instance
+         */
         Filter.prototype.equal = function (lhs, rhs) {
 
             join(lhs, 'eq', rhs);
@@ -181,8 +215,40 @@ var OData = (function () {
 
         };
 
+        /**
+         * @function eq
+         * @description Shorthand function for {@link Filter#equal|equal}.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value use in the equality check.
+         * @memberof Filter
+         * @instance
+         */
+
+        /**
+         * @function eq
+         * @description Shorthand function for {@link Filter#equal|equal}.
+         * @param {*} value - The value use in the equality check.
+         * @memberof Filter
+         * @instance
+         */
         Filter.prototype.eq = Filter.prototype.equal;
 
+        /**
+         * @function notEqual
+         * @description Check for inequality between two objects.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value use in the inequality check.
+         * @memberof Filter
+         * @instance
+         */
+
+        /**
+         * @function notEqual
+         * @description Create an inequality statement for a previous expression.
+         * @param {*} value - The value use in the inequality check.
+         * @memberof Filter
+         * @instance
+         */
         Filter.prototype.notEqual = function (lhs, rhs) {
 
             join(lhs, 'ne', rhs);
@@ -191,6 +257,22 @@ var OData = (function () {
 
         };
 
+        /**
+         * @function ne
+         * @description Shorthand function for {@link Filter#notEqual|notEqual}.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value use in the inequality check.
+         * @memberof Filter
+         * @instance
+         */
+
+        /**
+         * @function ne
+         * @description Shorthand function for {@link Filter#notEqual|notEqual}.
+         * @param {*} value - The value use in the inequality check.
+         * @memberof Filter
+         * @instance
+         */
         Filter.prototype.ne = Filter.prototype.notEqual;
 
         Filter.prototype.greaterThan = function (lhs, rhs) {

@@ -15,10 +15,21 @@ var OData = (function () {
     var _filter = [];
     var _format = 'json';
 
+    /**
+     * Creates a new OData instance.
+     * @class OData
+     */
     var OData = function () {
 
     };
 
+    /**
+     * @function url
+     * @description Sets the URL to construct OData queries against.
+     * @param {String} url - The URL to use.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.url = function (url) {
 
         _url = url;
@@ -27,7 +38,14 @@ var OData = (function () {
 
     };
 
-    OData.prototype.orderby = function (item) {
+    /**
+     * @function orderBy
+     * @description Order the resulting data by the given property. [Tutorial]{@tutorial orderby}.
+     * @param {String} property - The property to order by.
+     * @memberof OData
+     * @instance
+     */
+    OData.prototype.orderBy = function (item) {
 
         _orderby.push(item);
 
@@ -37,6 +55,12 @@ var OData = (function () {
 
     };
 
+    /**
+     * @function ascending
+     * @description {@link OData#orderBy|Order} the resulting data in ascending order.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.ascending = function () {
 
         _orderbyOrder = 'asc';
@@ -45,8 +69,20 @@ var OData = (function () {
 
     };
 
+    /**
+     * @function asc
+     * @description Shorthand function for {@link OData#ascending|ascending}.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.asc = OData.prototype.ascending;
 
+    /**
+     * @function descending
+     * @description {@link OData#orderBy|Order} the resulting data in descending order.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.descending = function () {
 
         _orderbyOrder = 'desc';
@@ -55,8 +91,21 @@ var OData = (function () {
 
     };
 
+    /**
+     * @function desc
+     * @description Shorthand function for {@link OData#descending|descending}.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.desc = OData.prototype.descending;
 
+    /**
+     * @function top
+     * @description Take the the first N elements from the resulting data.
+     * @param {Integer} n - The number of elements to take. Must be non-negative.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.top = function (n) {
 
         if (n < 0) {
@@ -71,6 +120,13 @@ var OData = (function () {
 
     };
 
+    /**
+     * @function skip
+     * @description Skip the the first N elements from the resulting data.
+     * @param {Integer} n - The number of elements to skip. Must be non-negative.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.skip = function (n) {
 
         if (n < 0) {
@@ -101,6 +157,14 @@ var OData = (function () {
 
     OData.prototype.count = OData.prototype.inlineCount;
 
+    /**
+     * @function select
+     * @description Specify a property to be include in the returned data.
+        Use the <code>'*'</code> wildcard to include all properties.
+     * @param {String} property - The property to include in the returned data.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.select = function (item) {
 
         _select.push(item);
@@ -111,12 +175,38 @@ var OData = (function () {
 
     };
 
+    /**
+     * @function filter
+     * @description Set up filters for the data.
+     * @param {Function} callback - The $filter callback.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.filter = function (callback) {
 
+        /**
+         * @class Filter
+         */
         var Filter = function () {
 
         };
 
+        /**
+         * @function equal
+         * @description Check for equality between two objects.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value use in the equality check.
+         * @memberof Filter
+         * @instance
+         */
+
+        /**
+         * @function equal
+         * @description Create an equality statement for a previous expression.
+         * @param {*} value - The value use in the equality check.
+         * @memberof Filter
+         * @instance
+         */
         Filter.prototype.equal = function (lhs, rhs) {
 
             join(lhs, 'eq', rhs);
@@ -125,8 +215,40 @@ var OData = (function () {
 
         };
 
+        /**
+         * @function eq
+         * @description Shorthand function for {@link Filter#equal|equal}.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value use in the equality check.
+         * @memberof Filter
+         * @instance
+         */
+
+        /**
+         * @function eq
+         * @description Shorthand function for {@link Filter#equal|equal}.
+         * @param {*} value - The value use in the equality check.
+         * @memberof Filter
+         * @instance
+         */
         Filter.prototype.eq = Filter.prototype.equal;
 
+        /**
+         * @function notEqual
+         * @description Check for inequality between two objects.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value use in the inequality check.
+         * @memberof Filter
+         * @instance
+         */
+
+        /**
+         * @function notEqual
+         * @description Create an inequality statement for a previous expression.
+         * @param {*} value - The value use in the inequality check.
+         * @memberof Filter
+         * @instance
+         */
         Filter.prototype.notEqual = function (lhs, rhs) {
 
             join(lhs, 'ne', rhs);
@@ -135,6 +257,22 @@ var OData = (function () {
 
         };
 
+        /**
+         * @function ne
+         * @description Shorthand function for {@link Filter#notEqual|notEqual}.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value use in the inequality check.
+         * @memberof Filter
+         * @instance
+         */
+
+        /**
+         * @function ne
+         * @description Shorthand function for {@link Filter#notEqual|notEqual}.
+         * @param {*} value - The value use in the inequality check.
+         * @memberof Filter
+         * @instance
+         */
         Filter.prototype.ne = Filter.prototype.notEqual;
 
         Filter.prototype.greaterThan = function (lhs, rhs) {
@@ -416,6 +554,14 @@ var OData = (function () {
 
     };
 
+    /**
+     * @function query
+     * @description Build the resulting query.
+        If the {@link OData#url|URL} has not been set, this function returns an Object containing the query parameters.
+        If the URL has been set, it will return the URL with the query parameters attached to it.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.query = function () {
 
         var query;
