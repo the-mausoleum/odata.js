@@ -117,96 +117,49 @@ var OData = (function () {
     var getParams = function () {
 
         var params = {};
-        var current = {};
 
-        current = buildSelect();
-
-        params[current.key] = current.value;
-
-        current = buildExpand();
-
-        params[current.key] = current.value;
-
-        current = buildTop();
-
-        params[current.key] = current.value;
-
-        current = buildOrderBy();
-
-        params[current.key] = current.value;
+        buildSelect(params);
+        buildExpand(params);
+        buildTop(params);
+        buildOrderBy(params);
 
         return params;
 
     };
 
-    var buildOrderBy = function () {
-
-        var parameter = {
-            key: '',
-            value: ''
-        };
+    var buildOrderBy = function (params) {
 
         if (_orderby.length < 1) {
-            return parameter;
+            return params;
         }
 
-        parameter = {
-            key: '$orderby',
-            value: _orderby.join(',') + ' ' + _orderbyOrder
-        };
-
-        return parameter;
+        return params['$orderby'] = _orderby.join(',') + ' ' + _orderbyOrder;
 
     };
 
-    var buildTop = function () {
+    var buildTop = function (params) {
 
-        var parameter = {
-            key: '$top',
-            value: _top
-        };
-
-        return parameter;
+        return params['$top'] = _top;
 
     };
 
-    var buildSelect = function () {
-
-        var parameter = {
-            key: '',
-            value: ''
-        };
+    var buildSelect = function (params) {
 
         if (_select.length < 1) {
-            return parameter;
+            return params;
         }
 
-        parameter = {
-            key: '$select',
-            value: _select.join(',')
-        };
-
-        return parameter;
+        return params['$select'] = _select.join(',');
 
     };
 
-    var buildExpand = function () {
-
-        var parameter = {
-            key: '',
-            value: ''
-        };
+    var buildExpand = function (params) {
 
         if (_expand.length < 1) {
-            return parameter;
+            return params;
         }
 
-        parameter = {
-            key: '$expand',
-            value: _expand.join(',')
-        };
-
-        return parameter;
+        return params['$expand'] = _expand.join(',');
 
     };
 

@@ -7,7 +7,7 @@ var OData = (function () {
         var args = arguments;
 
         return this.replace(/{(\d+)}/g, function (match, number) {
-            return typeof args[number] != 'undefined'
+            return typeof args[number] !== 'undefined'
                 ? args[number]
                 : match;
         });
@@ -15,6 +15,9 @@ var OData = (function () {
     };
 
     var _url = '';
+    var _orderby = [];
+    var _orderbyOrder = 'asc';
+    var _top = 0;
     var _select = [];
     var _expand = [];
 
@@ -25,6 +28,46 @@ var OData = (function () {
     OData.prototype.query = function (url) {
 
         _url = url;
+
+        return this;
+
+    };
+
+    OData.prototype.orderby = function (item) {
+
+        _orderby.push(item);
+
+        return this;
+
+    };
+
+    OData.prototype.ascending = function () {
+
+        _orderbyOrder = 'asc';
+
+        return this;
+
+    };
+
+    OData.prototype.asc = OData.prototype.ascending;
+
+    OData.prototype.descending = function () {
+
+        _orderbyOrder = 'desc';
+
+        return this;
+
+    };
+
+    OData.prototype.desc = OData.prototype.descending;
+
+    OData.prototype.top = function (n) {
+
+        if (n < 0) {
+            return this;
+        }
+
+        _top = n;
 
         return this;
 
@@ -49,10 +92,7 @@ var OData = (function () {
     OData.prototype.build = function () {
 
         var query = '';
-
         var params = getParams();
-
-        console.log(params)
 
         for (var i in params) {
             if (!i) {
@@ -72,64 +112,54 @@ var OData = (function () {
 
         return query;
 
-        return _url + '?' + buildSelect() + buildExpand();
-
     };
 
     var getParams = function () {
 
         var params = {};
-        var current = {};
 
-        current = buildSelect();
-
-        params[current.key] = current.value;
-
-        current = buildExpand();
-
-        params[current.key] = current.value;
+        buildSelect(params);
+        buildExpand(params);
+        buildTop(params);
+        buildOrderBy(params);
 
         return params;
 
     };
 
-    var buildSelect = function () {
+    var buildOrderBy = function (params) {
 
-        var parameter = {
-            key: '',
-            value: ''
-        };
-
-        if (_select.length < 1) {
-            return parameter;
+        if (_orderby.length < 1) {
+            return params;
         }
 
-        parameter = {
-            key: '$select',
-            value: _select.join(',')
-        };
-
-        return parameter;
+        return params['$orderby'] = _orderby.join(',') + ' ' + _orderbyOrder;
 
     };
 
-    var buildExpand = function () {
+    var buildTop = function (params) {
 
-        var parameter = {
-            key: '',
-            value: ''
-        };
+        return params['$top'] = _top;
 
-        if (_expand.length < 1) {
-            return parameter;
+    };
+
+    var buildSelect = function (params) {
+
+        if (_select.length < 1) {
+            return params;
         }
 
-        parameter = {
-            key: '$expand',
-            value: _expand.join(',')
-        };
+        return params['$select'] = _select.join(',');
 
-        return parameter;
+    };
+
+    var buildExpand = function (params) {
+
+        if (_expand.length < 1) {
+            return params;
+        }
+
+        return params['$expand'] = _expand.join(',');
 
     };
 
