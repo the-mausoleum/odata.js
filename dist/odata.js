@@ -2,24 +2,31 @@ var OData = (function () {
 
     'use strict';
 
-    var _include = [];
+    var _include, _url, _orderby, _orderbyOrder, _top, _skip, _inlineCount, _select, _expand, _filter, _format;
 
-    var _url = '';
-    var _orderby = [];
-    var _orderbyOrder = 'asc';
-    var _top = 0;
-    var _skip = 0;
-    var _inlineCount = 'allpages';
-    var _select = [];
-    var _expand = [];
-    var _filter = [];
-    var _format = 'json';
+    var init = function () {
+
+        _include = [];
+        _url = '';
+        _orderby = [];
+        _orderbyOrder = 'asc';
+        _top = 0;
+        _skip = 0;
+        _inlineCount = 'allpages';
+        _select = [];
+        _expand = [];
+        _filter = [];
+        _format = 'json';
+
+    };
 
     /**
      * Creates a new OData instance.
      * @class OData
      */
     var OData = function () {
+
+        init();
 
     };
 
@@ -497,6 +504,10 @@ var OData = (function () {
 
         };
 
+        if (typeof callback !== typeof Function) {
+            return this;
+        }
+
         return callback(new Filter());
 
     };
@@ -592,6 +603,8 @@ var OData = (function () {
                 query[value] = params[value];
             });
         }
+
+        init();
 
         return query;
 
