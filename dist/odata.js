@@ -608,7 +608,7 @@ var OData = (function () {
 
         Filter.prototype.replace = function (property, find, replace) {
 
-            _filter.push('replace(' + property + ', \'' + find + ', \'' + replace + '\')');
+            _filter.push('replace(' + property + ', \'' + find + '\', \'' + replace + '\')');
 
             return this;
 
@@ -725,6 +725,10 @@ var OData = (function () {
         };
 
         var joinArithmetic = function (lhs, operator, rhs) {
+
+            if (typeof operator === typeof '') {
+                operator = '\'' + operator + '\'';
+            }
 
             return lhs + ' ' + operator + (rhs ? ' ' + rhs : '');
 
