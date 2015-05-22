@@ -7,9 +7,7 @@ var OData = (function () {
         var args = arguments;
 
         return this.replace(/{(\d+)}/g, function (match, number) {
-            return typeof args[number] !== 'undefined'
-                ? args[number]
-                : match;
+            return typeof args[number] !== 'undefined' ? args[number] : match;
         });
 
     };
@@ -100,7 +98,7 @@ var OData = (function () {
 
         return this;
 
-    }
+    };
 
     OData.prototype.build = function () {
 
@@ -147,19 +145,25 @@ var OData = (function () {
             return params;
         }
 
-        return params['$orderby'] = _orderby.join(',') + ' ' + _orderbyOrder;
+        params.$orderby = _orderby.join(',') + ' ' + _orderbyOrder;
+
+        return params;
 
     };
 
     var buildTop = function (params) {
 
-        return params['$top'] = _top;
+        params.$top = _top;
+
+        return params;
 
     };
 
     var buildSkip = function (params) {
 
-        return params['$skip'] = _skip;
+        params.$skip = _skip;
+
+        return params;
 
     };
 
@@ -169,7 +173,9 @@ var OData = (function () {
             return params;
         }
 
-        return params['$select'] = _select.join(',');
+        params.$select = _select.join(',');
+
+        return params;
 
     };
 
@@ -179,7 +185,9 @@ var OData = (function () {
             return params;
         }
 
-        return params['$expand'] = _expand.join(',');
+        params.$expand = _expand.join(',');
+
+        return params;
 
     };
 
