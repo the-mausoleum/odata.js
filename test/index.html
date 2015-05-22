@@ -6,7 +6,7 @@
     <script src="../src/odata.js"></script>
 </head>
 <body>
-    <div>
+    <div id="query">
 
     </div>
     <script>
@@ -16,16 +16,16 @@
 
         var query = odata
             .select('Name')
-            .select('Price')
-            .orderby('Name')
-            .desc()
-            .top(5)
-            .skip(1)
-            .count()
-            .json()
+            .filter(function (filter) {
+                return filter
+                    .equal('Type', 2)
+                    .and()
+                    .equal('AuthenticationCode', '4DC9FD560AE8A36E20D58B31F7798C13')
+                    .next();
+            })
             .query();
 
-        console.log(query)
+        document.getElementById('query').innerHTML = JSON.stringify(query, null, 4);
     </script>
 </body>
 </html>

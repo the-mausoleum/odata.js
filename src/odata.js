@@ -12,6 +12,7 @@ var OData = (function () {
     var _inlineCount = 'allpages';
     var _select = [];
     var _expand = [];
+    var _filter = [];
     var _format = 'json';
 
     var OData = function () {
@@ -107,6 +108,40 @@ var OData = (function () {
         include('$select');
 
         return this;
+
+    };
+
+    OData.prototype.filter = function (callback) {
+
+        var Filter = function () {
+
+        };
+
+        Filter.prototype.equal = function (property, value) {
+
+            _filter.push(property + ' eq ' + '\'' + value + '\'');
+
+            return this;
+
+        };
+
+        Filter.prototype.and = function () {
+
+            _filter.push('and');
+
+            return this;
+
+        };
+
+        Filter.prototype.next = function () {
+
+            include('$filter');
+
+            return this;
+
+        }.bind(this);
+
+        return callback(new Filter());
 
     };
 
@@ -210,6 +245,7 @@ var OData = (function () {
 
         buildSelect(params);
         buildExpand(params);
+        buildFilter(params);
         buildSkip(params);
         buildTop(params);
         buildInlineCount(params);
@@ -275,6 +311,14 @@ var OData = (function () {
         }
 
         params.$expand = _expand.join(',');
+
+        return params;
+
+    };
+
+    var buildFilter = function (params) {
+
+        params.$filter = _filter.join(' ');
 
         return params;
 
