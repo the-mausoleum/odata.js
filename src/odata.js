@@ -590,9 +590,9 @@ var OData = (function () {
 
         };
 
-        Filter.prototype.length = function (lhs, rhs) {
+        Filter.prototype.length = function (property) {
 
-            _filter.push('length(' + lhs + ')');
+            _filter.push('length(' + property + ')');
 
             return this;
 
@@ -614,6 +614,31 @@ var OData = (function () {
 
         };
 
+        /** @todo Implement Filter.prototype.substring */
+
+        Filter.prototype.toLower = function (property) {
+
+            _filter.push('tolower(' + property + ')');
+
+            return this;
+
+        };
+
+        Filter.prototype.toUpper = function (property) {
+
+            _filter.push('toupper(' + property + ')');
+
+            return this;
+
+        };
+
+        Filter.prototype.trim = function (property) {
+
+            _filter.push('trim(' + property + ')');
+
+            return this;
+
+        };
         Filter.prototype.year = function (lhs) {
 
             _filter.push('year(' + lhs + ')');
