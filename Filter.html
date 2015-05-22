@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: OData</title>
+    <title>JSDoc: Class: Filter</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: OData</h1>
+    <h1 class="page-title">Class: Filter</h1>
 
     
 
@@ -29,7 +29,7 @@
 <header>
     
         <h2>
-        OData
+        Filter
         </h2>
         
     
@@ -42,15 +42,11 @@
 
     
 
-    <h4 class="name" id="OData"><span class="type-signature"></span>new OData<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Filter"><span class="type-signature"></span>new Filter<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
-
-<div class="description">
-    Creates a new OData instance.
-</div>
 
 
 
@@ -93,7 +89,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line18">line 18</a>
+        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line187">line 187</a>
     </li></ul></dd>
     
 
@@ -142,342 +138,14 @@
 
     
 
-    <h4 class="name" id="asc"><span class="type-signature"></span>asc<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="eq"><span class="type-signature"></span>eq<span class="signature">(value)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Shorthand function for <a href="OData.html#ascending">ascending</a>.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line72">line 72</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="ascending"><span class="type-signature"></span>ascending<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <a href="OData.html#orderBy">Order</a> the resulting data in ascending order.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line58">line 58</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="desc"><span class="type-signature"></span>desc<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Shorthand function for <a href="OData.html#descending">descending</a>.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line94">line 94</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="descending"><span class="type-signature"></span>descending<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <a href="OData.html#orderBy">Order</a> the resulting data in descending order.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line80">line 80</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="filter"><span class="type-signature"></span>filter<span class="signature">(callback)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Set up filters for the data.
+    Shorthand function for <a href="Filter.html#equal">equal</a>.
 </div>
 
 
@@ -513,13 +181,13 @@
 
         <tr>
             
-                <td class="name"><code>callback</code></td>
+                <td class="name"><code>value</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">*</span>
 
 
             
@@ -529,7 +197,7 @@
 
             
 
-            <td class="description last">The $filter callback.</td>
+            <td class="description last">The value use in the equality check.</td>
         </tr>
 
     
@@ -570,7 +238,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line178">line 178</a>
+        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line227">line 227</a>
     </li></ul></dd>
     
 
@@ -601,14 +269,14 @@
 
     
 
-    <h4 class="name" id="orderBy"><span class="type-signature"></span>orderBy<span class="signature">(property)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="eq"><span class="type-signature"></span>eq<span class="signature">(property, value)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Order the resulting data by the given property. <a href="tutorial-orderby.html">Tutorial</a>.
+    Shorthand function for <a href="Filter.html#equal">equal</a>.
 </div>
 
 
@@ -660,7 +328,30 @@
 
             
 
-            <td class="description last">The property to order by.</td>
+            <td class="description last">The property to use.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The value use in the equality check.</td>
         </tr>
 
     
@@ -701,7 +392,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line41">line 41</a>
+        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line218">line 218</a>
     </li></ul></dd>
     
 
@@ -732,16 +423,14 @@
 
     
 
-    <h4 class="name" id="query"><span class="type-signature"></span>query<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="equal"><span class="type-signature"></span>equal<span class="signature">(value)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Build the resulting query.
-        If the <a href="OData.html#url">URL</a> has not been set, this function returns an Object containing the query parameters.
-        If the URL has been set, it will return the URL with the query parameters attached to it.
+    Create an equality statement for a previous expression.
 </div>
 
 
@@ -750,6 +439,55 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The value use in the equality check.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -785,7 +523,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line557">line 557</a>
+        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line203">line 203</a>
     </li></ul></dd>
     
 
@@ -816,15 +554,14 @@
 
     
 
-    <h4 class="name" id="select"><span class="type-signature"></span>select<span class="signature">(property)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="equal"><span class="type-signature"></span>equal<span class="signature">(property, value)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Specify a property to be include in the returned data.
-        Use the <code>'*'</code> wildcard to include all properties.
+    Check for equality between two objects.
 </div>
 
 
@@ -876,128 +613,20 @@
 
             
 
-            <td class="description last">The property to include in the returned data.</td>
+            <td class="description last">The property to use.</td>
         </tr>
 
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line160">line 160</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="skip"><span class="type-signature"></span>skip<span class="signature">(n)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Skip the the first N elements from the resulting data.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>n</code></td>
+                <td class="name"><code>value</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Integer</span>
+<span class="param-type">*</span>
 
 
             
@@ -1007,7 +636,7 @@
 
             
 
-            <td class="description last">The number of elements to skip. Must be non-negative.</td>
+            <td class="description last">The value use in the equality check.</td>
         </tr>
 
     
@@ -1048,7 +677,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line123">line 123</a>
+        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line194">line 194</a>
     </li></ul></dd>
     
 
@@ -1079,14 +708,14 @@
 
     
 
-    <h4 class="name" id="top"><span class="type-signature"></span>top<span class="signature">(n)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ne"><span class="type-signature"></span>ne<span class="signature">(value)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Take the the first N elements from the resulting data.
+    Shorthand function for <a href="Filter.html#notEqual">notEqual</a>.
 </div>
 
 
@@ -1122,13 +751,13 @@
 
         <tr>
             
-                <td class="name"><code>n</code></td>
+                <td class="name"><code>value</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Integer</span>
+<span class="param-type">*</span>
 
 
             
@@ -1138,7 +767,7 @@
 
             
 
-            <td class="description last">The number of elements to take. Must be non-negative.</td>
+            <td class="description last">The value use in the inequality check.</td>
         </tr>
 
     
@@ -1179,7 +808,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line102">line 102</a>
+        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line269">line 269</a>
     </li></ul></dd>
     
 
@@ -1210,14 +839,14 @@
 
     
 
-    <h4 class="name" id="url"><span class="type-signature"></span>url<span class="signature">(url)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ne"><span class="type-signature"></span>ne<span class="signature">(property, value)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Sets the URL to construct OData queries against.
+    Shorthand function for <a href="Filter.html#notEqual">notEqual</a>.
 </div>
 
 
@@ -1253,7 +882,7 @@
 
         <tr>
             
-                <td class="name"><code>url</code></td>
+                <td class="name"><code>property</code></td>
             
 
             <td class="type">
@@ -1269,7 +898,30 @@
 
             
 
-            <td class="description last">The URL to use.</td>
+            <td class="description last">The property to use.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The value use in the inequality check.</td>
         </tr>
 
     
@@ -1310,7 +962,292 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line26">line 26</a>
+        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line260">line 260</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="notEqual"><span class="type-signature"></span>notEqual<span class="signature">(value)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Create an inequality statement for a previous expression.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The value use in the inequality check.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line245">line 245</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="notEqual"><span class="type-signature"></span>notEqual<span class="signature">(property, value)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Check for inequality between two objects.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>property</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The property to use.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The value use in the inequality check.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="odata.js.html">odata.js</a>, <a href="odata.js.html#line236">line 236</a>
     </li></ul></dd>
     
 
