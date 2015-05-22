@@ -18,6 +18,9 @@
             .query('http://services.odata.org/OData/OData.svc/Products')
             .select('Name')
             .select('Price')
+            .orderby('Name')
+            .desc()
+            .top(5)
             .build();
 
         console.log(query)
