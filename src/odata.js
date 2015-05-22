@@ -249,6 +249,86 @@ var OData = (function () {
 
         Filter.prototype.mod = Filter.prototype.modulo;
 
+        Filter.prototype.substringOf = function (lhs, rhs) {
+
+            _filter.push('substringof(\'' + rhs + '\', ' + lhs + ')');
+
+            return this;
+
+        };
+
+        Filter.prototype.startsWith = function (lhs, rhs) {
+
+            _filter.push('startswith(' + lhs + ', \'' + rhs + '\')');
+
+            return this;
+
+        };
+
+        Filter.prototype.endsWith = function (lhs, rhs) {
+
+            _filter.push('startswith(' + lhs + ', \'' + rhs + '\')');
+
+            return this;
+
+        };
+
+        Filter.prototype.length = function (lhs, rhs) {
+
+            _filter.push('length(' + lhs + ')');
+
+            return this;
+
+        };
+
+        Filter.prototype.year = function (lhs) {
+
+            _filter.push('year(' + lhs + ')');
+
+            return this;
+
+        };
+
+        Filter.prototype.month = function (lhs) {
+
+            _filter.push('month(' + lhs + ')');
+
+            return this;
+
+        };
+
+        Filter.prototype.day = function (lhs) {
+
+            _filter.push('day(' + lhs + ')');
+
+            return this;
+
+        };
+
+        Filter.prototype.hour = function (lhs) {
+
+            _filter.push('hour(' + lhs + ')');
+
+            return this;
+
+        };
+
+        Filter.prototype.minute = function (lhs) {
+
+            _filter.push('minute(' + lhs + ')');
+
+            return this;
+
+        };
+
+        Filter.prototype.second = function (lhs) {
+
+            _filter.push('second(' + lhs + ')');
+
+            return this;
+
+        };
+
         Filter.prototype.next = function () {
 
             include('$filter');

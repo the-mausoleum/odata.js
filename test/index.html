@@ -17,11 +17,7 @@
         var query = odata
             .filter(function (filter) {
                 return filter
-                    .add('Price', 10)
-                    .equal(20)
-                    .and()
-                    .add('Tax', 4)
-                    .notEqual(1)
+                    .substringof('AuthenticationCode', 'ABC')
                     .next();
             })
             .query();
