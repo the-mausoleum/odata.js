@@ -15,12 +15,13 @@
         console.log(odata)
 
         var query = odata
-            .select('Name')
             .filter(function (filter) {
                 return filter
-                    .equal('Type', 2)
+                    .add('Price', 10)
+                    .equal(20)
                     .and()
-                    .equal('AuthenticationCode', '4DC9FD560AE8A36E20D58B31F7798C13')
+                    .add('Tax', 4)
+                    .notEqual(1)
                     .next();
             })
             .query();

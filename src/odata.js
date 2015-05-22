@@ -117,13 +117,65 @@ var OData = (function () {
 
         };
 
-        Filter.prototype.equal = function (property, value) {
+        Filter.prototype.equal = function (lhs, rhs) {
 
-            _filter.push(property + ' eq ' + '\'' + value + '\'');
+            join(lhs, 'eq', rhs);
 
             return this;
 
         };
+
+        Filter.prototype.eq = Filter.prototype.equal;
+
+        Filter.prototype.notEqual = function (lhs, rhs) {
+
+            join(lhs, 'ne', rhs);
+
+            return this;
+
+        };
+
+        Filter.prototype.ne = Filter.prototype.notEqual;
+
+        Filter.prototype.greaterThan = function (lhs, rhs) {
+
+            join(lhs, 'gt', rhs);
+
+            return this;
+
+        };
+
+        Filter.prototype.gt = Filter.prototype.greaterThan;
+
+        Filter.prototype.greaterThanOrEqual = function (lhs, rhs) {
+
+            join(lhs, 'ge', rhs);
+
+            return this;
+
+        };
+
+        Filter.prototype.ge = Filter.prototype.greaterThanOrEqual;
+
+        Filter.prototype.lessThan = function (lhs, rhs) {
+
+            join(lhs, 'lt', rhs);
+
+            return this;
+
+        };
+
+        Filter.prototype.lt = Filter.prototype.lessThan;
+
+        Filter.prototype.lessThanOrEqual = function (lhs, rhs) {
+
+            join(lhs, 'le', rhs);
+
+            return this;
+
+        };
+
+        Filter.prototype.le = Filter.prototype.lessThanOrEqual;
 
         Filter.prototype.and = function () {
 
@@ -133,6 +185,70 @@ var OData = (function () {
 
         };
 
+        Filter.prototype.or = function () {
+
+            _filter.push('or');
+
+            return this;
+
+        };
+
+        Filter.prototype.not = function () {
+
+            _filter.push('not');
+
+            return this;
+
+        };
+
+        Filter.prototype.add = function (lhs, rhs) {
+
+            _filter.push(joinArithmetic(lhs, 'add', rhs));
+
+            return this;
+
+        };
+
+        Filter.prototype.subtract = function (lhs, rhs) {
+
+            _filter.push(joinArithmetic(lhs, 'sub', rhs));
+
+            return this;
+
+        };
+
+        Filter.prototype.sub = Filter.prototype.subtract;
+
+        Filter.prototype.multiply = function (lhs, rhs) {
+
+            _filter.push(joinArithmetic(lhs, 'mul', rhs));
+
+            return this;
+
+        };
+
+        Filter.prototype.mul = Filter.prototype.multiply;
+
+        Filter.prototype.divide = function (lhs, rhs) {
+
+            _filter.push(joinArithmetic(lhs, 'div', rhs));
+
+            return this;
+
+        };
+
+        Filter.prototype.div = Filter.prototype.divide;
+
+        Filter.prototype.modulo = function (lhs, rhs) {
+
+            _filter.push(joinArithmetic(lhs, 'mod', rhs));
+
+            return this;
+
+        };
+
+        Filter.prototype.mod = Filter.prototype.modulo;
+
         Filter.prototype.next = function () {
 
             include('$filter');
@@ -140,6 +256,28 @@ var OData = (function () {
             return this;
 
         }.bind(this);
+
+        var join = function (lhs, operator, rhs) {
+
+            if (lhs !== null && typeof rhs === 'undefined') {
+                _filter.push(joinArithmetic('eq', lhs));
+            } else {
+                _filter.push(joinLogical(lhs, 'eq', rhs));
+            }
+
+        };
+
+        var joinLogical = function (lhs, operator, rhs) {
+
+            return lhs + ' ' + operator + ' ' + '\'' + rhs + '\'';
+
+        };
+
+        var joinArithmetic = function (lhs, operator, rhs) {
+
+            return lhs + ' ' + operator + (rhs ? ' ' + rhs : '');
+
+        };
 
         return callback(new Filter());
 
