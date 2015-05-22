@@ -21,8 +21,8 @@ var OData = (function () {
     };
 
     /**
-     * Creates a new OData instance.
      * @class OData
+     * @description Creates a new OData instance.
      */
     var OData = function () {
 
@@ -212,6 +212,7 @@ var OData = (function () {
 
         /**
          * @class Filter
+         * @description Creates a new Filter instance for creating OData $filter queries.
          */
         var Filter = function () {
 
@@ -221,7 +222,7 @@ var OData = (function () {
          * @function equal
          * @description Check for equality between two objects.
          * @param {String} property - The property to use.
-         * @param {*} value - The value use in the equality check.
+         * @param {*} value - The value to use in the equality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -230,7 +231,7 @@ var OData = (function () {
         /**
          * @function equal
          * @description Create an equality statement for a previous expression.
-         * @param {*} value - The value use in the equality check.
+         * @param {*} value - The value to use in the equality check.
          * @memberof Filter
          * @instance
          * @variation 2
@@ -247,7 +248,7 @@ var OData = (function () {
          * @function eq
          * @description Shorthand function for {@link Filter#equal(1)|equal}.
          * @param {String} property - The property to use.
-         * @param {*} value - The value use in the equality check.
+         * @param {*} value - The value to use in the equality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -256,7 +257,7 @@ var OData = (function () {
         /**
          * @function eq
          * @description Shorthand function for {@link Filter#equal(2)|equal}.
-         * @param {*} value - The value use in the equality check.
+         * @param {*} value - The value to use in the equality check.
          * @memberof Filter
          * @instance
          * @variation 2
@@ -265,9 +266,9 @@ var OData = (function () {
 
         /**
          * @function notEqual
-         * @description Check for inequality between two objects.
+         * @description Check if the property value is not equal to the given value.
          * @param {String} property - The property to use.
-         * @param {*} value - The value use in the inequality check.
+         * @param {*} value - The value to use in the inequality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -275,8 +276,8 @@ var OData = (function () {
 
         /**
          * @function notEqual
-         * @description Create an inequality statement for a previous expression.
-         * @param {*} value - The value use in the inequality check.
+         * @description Check if the result of the previous expression is not equal to the given value.
+         * @param {*} value - The value to use in the inequality check.
          * @memberof Filter
          * @instance
          * @variation 2
@@ -293,7 +294,7 @@ var OData = (function () {
          * @function ne
          * @description Shorthand function for {@link Filter#notEqual(1)|notEqual}.
          * @param {String} property - The property to use.
-         * @param {*} value - The value use in the inequality check.
+         * @param {*} value - The value to use in the inequality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -302,13 +303,31 @@ var OData = (function () {
         /**
          * @function ne
          * @description Shorthand function for {@link Filter#notEqual(2)|notEqual}.
-         * @param {*} value - The value use in the inequality check.
+         * @param {*} value - The value to use in the inequality check.
          * @memberof Filter
          * @instance
          * @variation 2
          */
         Filter.prototype.ne = Filter.prototype.notEqual;
 
+        /**
+         * @function greaterThan
+         * @description Check if the property value is greater than the given value.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 1
+         */
+
+        /**
+         * @function greaterThan
+         * @description Check if the result of the previous expression is greater than the given value.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 2
+         */
         Filter.prototype.greaterThan = function (lhs, rhs) {
 
             join(lhs, 'gt', rhs);
@@ -317,8 +336,44 @@ var OData = (function () {
 
         };
 
+        /**
+         * @function gt
+         * @description Shorthand function for {@link Filter#greaterThan(1)|greaterThan}.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 1
+         */
+
+        /**
+         * @function gt
+         * @description Shorthand function for {@link Filter#greaterThan(2)|greaterThan}.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 2
+         */
         Filter.prototype.gt = Filter.prototype.greaterThan;
 
+        /**
+         * @function greaterThanOrEqual
+         * @description Check if the property value is greater than or equal to the given value.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 1
+         */
+
+        /**
+         * @function greaterThanOrEqual
+         * @description Check if the result of the previous expression is greater than or equal to the given value.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 2
+         */
         Filter.prototype.greaterThanOrEqual = function (lhs, rhs) {
 
             join(lhs, 'ge', rhs);
@@ -327,8 +382,44 @@ var OData = (function () {
 
         };
 
+        /**
+         * @function ge
+         * @description Shorthand function for {@link Filter#greaterThanOrEqual(1)|greaterThanOrEqual}.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 1
+         */
+
+        /**
+         * @function ge
+         * @description Shorthand function for {@link Filter#greaterThanOrEqual(2)|greaterThanOrEqual}.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 2
+         */
         Filter.prototype.ge = Filter.prototype.greaterThanOrEqual;
 
+        /**
+         * @function lessThan
+         * @description Check if the property value is less than the given value.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 1
+         */
+
+        /**
+         * @function lessThan
+         * @description Check if the result of the previous expression is less than the given value.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 2
+         */
         Filter.prototype.lessThan = function (lhs, rhs) {
 
             join(lhs, 'lt', rhs);
@@ -337,8 +428,44 @@ var OData = (function () {
 
         };
 
+        /**
+         * @function lt
+         * @description Shorthand function for {@link Filter#lessThan(1)|lessThan}.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 1
+         */
+
+        /**
+         * @function lt
+         * @description Shorthand function for {@link Filter#lessThan(2)|lessThan}.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 2
+         */
         Filter.prototype.lt = Filter.prototype.lessThan;
 
+        /**
+         * @function lessThanOrEqual
+         * @description Check if the property value is less than or equal to the given value.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 1
+         */
+
+        /**
+         * @function lessThanOrEqual
+         * @description Check if the result of the previous expression is less than or equal to the given value.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 2
+         */
         Filter.prototype.lessThanOrEqual = function (lhs, rhs) {
 
             join(lhs, 'le', rhs);
@@ -347,6 +474,24 @@ var OData = (function () {
 
         };
 
+        /**
+         * @function le
+         * @description Shorthand function for {@link Filter#lessThanOrEqual(1)|lessThanOrEqual}.
+         * @param {String} property - The property to use.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 1
+         */
+
+        /**
+         * @function le
+         * @description Shorthand function for {@link Filter#lessThanOrEqual(2)|lessThanOrEqual}.
+         * @param {*} value - The value to use in the inequality check.
+         * @memberof Filter
+         * @instance
+         * @variation 2
+         */
         Filter.prototype.le = Filter.prototype.lessThanOrEqual;
 
         Filter.prototype.and = function () {
@@ -549,6 +694,15 @@ var OData = (function () {
 
     };
 
+    /**
+     * @function format
+     * @description Set the desired response format for the data.
+        Possible formats: 'atom', 'json', 'xml'.
+        Defaults to 'json'.
+     * @param {String} format - The desired format.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.format = function (format) {
 
         switch (format.toLowerCase()) {
@@ -574,18 +728,36 @@ var OData = (function () {
 
     };
 
+    /**
+     * @function atom
+     * @description Sets the data {@link OData#format|format} to 'atom'.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.atom = function () {
 
         return OData.prototype.format.apply(this, ['atom']);
 
     };
 
+    /**
+     * @function json
+     * @description Sets the data {@link OData#format|format} to 'json'.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.json = function () {
 
         return OData.prototype.format.apply(this, ['json']);
 
     };
 
+    /**
+     * @function xml
+     * @description Sets the data {@link OData#format|format} to 'xml'.
+     * @memberof OData
+     * @instance
+     */
     OData.prototype.xml = function () {
 
         return OData.prototype.format.apply(this, ['xml']);
