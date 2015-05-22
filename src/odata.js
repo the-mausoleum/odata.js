@@ -10,7 +10,7 @@ var OData = (function () {
     var _inlineCount = 'allpages';
     var _select = [];
     var _expand = [];
-    var _format = 'application/json';
+    var _format = 'json';
 
     var OData = function () {
 
