@@ -4,7 +4,7 @@ var OData = (function () {
 
     var _include, _url, _orderby, _orderbyOrder, _top, _skip, _inlineCount, _select, _expand, _filter, _concat, _format;
 
-    var init = function () {
+    var init = function (options) {
 
         _include = [];
         _url = '';
@@ -19,15 +19,35 @@ var OData = (function () {
         _concat = [];
         _format = 'json';
 
+        if (options.alwaysCount) {
+            include('$inlinecount');
+        }
+
+    };
+
+    var extend = function (a, b) {
+        for (var i in b) {
+            if (b.hasOwnProperty(i)) {
+                a[i] = b[i];
+            }
+        }
+
+        return a;
     };
 
     /**
      * @class OData
      * @description Creates a new OData instance.
      */
-    var OData = function () {
+    var OData = function (options) {
 
-        init();
+        this.options = {
+            alwaysCount: false
+        };
+
+        this.options = extend(this.options, options);
+
+        init(this.options);
 
     };
 
@@ -923,7 +943,7 @@ var OData = (function () {
             });
         }
 
-        init();
+        init(this.options);
 
         return query;
 
