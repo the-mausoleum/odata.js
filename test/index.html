@@ -6,9 +6,9 @@
     <script src="../src/odata.js"></script>
 </head>
 <body>
-    <div id="query">
+    <pre id="query">
 
-    </div>
+    </pre>
     <script>
         var odata = new OData();
 
@@ -17,8 +17,10 @@
         var query = odata
             .filter(function (filter) {
                 return filter
-                    .replace('CompanyName', ' ', '')
-                    .equal('AlfredsFutterkiste')
+                    .concat('City', ', ')
+                    .concat('State', ', ')
+                    .concat('Country')
+                    .concat()
                     .next();
             })
             .query();

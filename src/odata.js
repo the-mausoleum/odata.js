@@ -2,7 +2,7 @@ var OData = (function () {
 
     'use strict';
 
-    var _include, _url, _orderby, _orderbyOrder, _top, _skip, _inlineCount, _select, _expand, _filter, _format;
+    var _include, _url, _orderby, _orderbyOrder, _top, _skip, _inlineCount, _select, _expand, _filter, _concat, _format;
 
     var init = function () {
 
@@ -16,6 +16,7 @@ var OData = (function () {
         _select = [];
         _expand = [];
         _filter = [];
+        _concat = [];
         _format = 'json';
 
     };
@@ -639,6 +640,42 @@ var OData = (function () {
             return this;
 
         };
+
+        Filter.prototype.concat = function (lhs, rhs) {
+
+            var doConcat = function (arr) {
+                var quote = arr[1].indexOf('concat(') === -1;
+
+                return 'concat(' + arr[0] + ', ' + (quote ? '\'' : '') + arr[1] + (quote ? '\'' : '') + ')';
+            };
+
+            if (typeof lhs === 'undefined' && typeof rhs === 'undefined') {
+                var concatExpression = [];
+
+                for (var i = 0; i < _concat.length; i += 2) {
+                    var terms = _concat.slice(i, i + 2);
+
+                    if (terms.length === 1) {
+                        concatExpression.push(doConcat([doConcat(concatExpression.splice(0, 2)), terms]));
+
+                        break;
+                    }
+
+                    concatExpression.push(doConcat(terms));
+                }
+
+                _filter.push(concatExpression.pop());
+            } else if (lhs !== null && typeof rhs === 'undefined') {
+                _concat.push(lhs);
+            } else {
+                _concat.push(lhs);
+                _concat.push(rhs);
+            }
+
+            return this;
+
+        };
+
         Filter.prototype.year = function (lhs) {
 
             _filter.push('year(' + lhs + ')');
