@@ -2,9 +2,11 @@ var OData = (function () {
 
     'use strict';
 
-    var _include, _url, _orderby, _orderbyOrder, _top, _skip, _inlineCount, _select, _expand, _filter, _concat, _format;
+    var _options, _include, _url, _orderby, _orderbyOrder, _top, _skip, _inlineCount, _select, _expand, _filter, _concat, _format;
 
     var init = function (options) {
+
+        _options = options;
 
         _include = [];
         _url = '';
@@ -19,7 +21,7 @@ var OData = (function () {
         _concat = [];
         _format = 'json';
 
-        if (options.alwaysCount) {
+        if (_options.alwaysCount) {
             include('$inlinecount');
         }
 
@@ -42,7 +44,8 @@ var OData = (function () {
     var OData = function (options) {
 
         this.options = {
-            alwaysCount: false
+            alwaysCount: false,
+            caseSensitive: true
         };
 
         this.options = extend(this.options, options);
@@ -587,9 +590,13 @@ var OData = (function () {
 
         Filter.prototype.mod = Filter.prototype.modulo;
 
-        Filter.prototype.substringOf = function (lhs, rhs) {
+        Filter.prototype.substringOf = function (lhs, rhs, isCaseInsensitive) {
 
-            _filter.push('substringof(\'' + rhs + '\', ' + lhs + ')');
+            if (isCaseInsensitive || _options.caseSensitive === false) {
+                _filter.push('substringof(\'' + rhs.toLowerCase() + '\', tolower(' + lhs + '))');
+            } else {
+                _filter.push('substringof(\'' + rhs + '\', ' + lhs + ')');
+            }
 
             return this;
 

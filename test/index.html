@@ -11,19 +11,20 @@
     </pre>
     <script>
         var odata = new OData({
-            alwaysCount: true
+            alwaysCount: true,
+            caseSensitive: false
         });
 
         console.log(odata)
 
         var query = odata
-            .filter(function (filter) {
-                return filter
-                    .concat('City', ', ')
-                    .concat('State', ', ')
-                    .concat('Country')
-                    .concat()
+            .filter(function (f) {
+                return f
+                    .substringOf('Name', 'John Smith')
+                    .or()
+                    .substringOf('Address', '123 Maple Street')
                     .next();
+
             })
             .query();
 
