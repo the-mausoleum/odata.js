@@ -26,6 +26,8 @@
                     .next();
 
             })
+            .orderBy('Name')
+            .direction('desc')
             .query();
 
         document.getElementById('query').innerHTML = JSON.stringify(query, null, 4);

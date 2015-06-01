@@ -88,6 +88,33 @@ var OData = (function () {
     };
 
     /**
+     * @function direction
+     * @description {@link OData#orderBy|Order} the resulting data in the specified direction.
+     * @param {String} direction - The direction to order the data in.
+        Possible values are 'asc', 'ascending', 'desc', and 'descending'.
+     * @memberof OData
+     * @instance
+     */
+    OData.prototype.direction = function (direction) {
+
+        switch (direction.toLowerCase()) {
+            case 'asc':
+            case 'ascending':
+                OData.prototype.ascending.apply(this);
+                break;
+            case 'desc':
+            case 'descending':
+                OData.prototype.descending.apply(this);
+                break;
+            default:
+                throw new Error('Unknown orderBy direction: `' + direction + '`.');
+        }
+
+        return this;
+
+    };
+
+    /**
      * @function ascending
      * @description {@link OData#orderBy|Order} the resulting data in ascending order.
      * @memberof OData
