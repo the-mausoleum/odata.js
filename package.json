@@ -1,6 +1,6 @@
 {
   "name": "odata.js",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "An OData query builder for JavaScript.",
   "main": "src/odata.js",
   "directories": {
