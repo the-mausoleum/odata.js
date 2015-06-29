@@ -20,9 +20,13 @@
         var query = odata
             .filter(function (f) {
                 return f
-                    .substringOf('Name', 'John Smith')
-                    .or()
-                    .substringOf('Address', '123 Maple Street')
+                    .startGroup()
+                        .substringOf('Name', 'John Smith')
+                        .or()
+                        .substringOf('Address', '123 Maple Street')
+                    .endGroup()
+                    .and()
+                    .ge('Age', 21)
                     .next();
 
             })

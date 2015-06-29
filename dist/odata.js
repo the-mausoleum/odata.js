@@ -269,6 +269,22 @@ var OData = (function () {
 
         };
 
+        Filter.prototype.startGroup = function () {
+
+            _filter.push('(');
+
+            return this;
+
+        };
+
+        Filter.prototype.endGroup = function () {
+
+            _filter.push(')');
+
+            return this;
+
+        };
+
         /**
          * @function equal
          * @description Check for equality between two objects.

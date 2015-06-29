@@ -270,6 +270,36 @@ var OData = (function () {
         };
 
         /**
+         * @function startGroup
+         * @description Mark the start of a filtering group.
+            Used to group boolean expressions.
+         * @memberof Filter
+         * @instance
+         */
+        Filter.prototype.startGroup = function () {
+
+            _filter.push('(');
+
+            return this;
+
+        };
+
+        /**
+         * @function endGroup
+         * @description Mark the end of a filtering group.
+            Used to group boolean expressions.
+         * @memberof Filter
+         * @instance
+         */
+        Filter.prototype.endGroup = function () {
+
+            _filter.push(')');
+
+            return this;
+
+        };
+
+        /**
          * @function equal
          * @description Check for equality between two objects.
          * @param {String} property - The property to use.
