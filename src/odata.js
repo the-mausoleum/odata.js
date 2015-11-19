@@ -872,7 +872,7 @@ var OData = (function () {
 
         var joinArithmetic = function (lhs, operator, rhs) {
 
-            if (typeof operator === typeof '') {
+            if (typeof operator === 'string') {
                 operator = '\'' + operator + '\'';
             }
 
@@ -880,7 +880,7 @@ var OData = (function () {
 
         };
 
-        if (typeof callback !== typeof Function) {
+        if (typeof callback !== 'function') {
             return this;
         }
 
