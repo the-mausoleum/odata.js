@@ -269,6 +269,13 @@ var OData = (function () {
 
         };
 
+        /**
+         * @function startGroup
+         * @description Mark the start of a filtering group.
+            Used to group boolean expressions.
+         * @memberof Filter
+         * @instance
+         */
         Filter.prototype.startGroup = function () {
 
             _filter.push('(');
@@ -277,6 +284,13 @@ var OData = (function () {
 
         };
 
+        /**
+         * @function endGroup
+         * @description Mark the end of a filtering group.
+            Used to group boolean expressions.
+         * @memberof Filter
+         * @instance
+         */
         Filter.prototype.endGroup = function () {
 
             _filter.push(')');
@@ -290,6 +304,7 @@ var OData = (function () {
          * @description Check for equality between two objects.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the equality check.
+         * @param boolean isGuid - A flag indicating whether or not the value is a GUID.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -303,9 +318,9 @@ var OData = (function () {
          * @instance
          * @variation 2
          */
-        Filter.prototype.equal = function (lhs, rhs) {
+        Filter.prototype.equal = function (lhs, rhs, isGuid) {
 
-            join(lhs, 'eq', rhs);
+            join(lhs, 'eq', rhs, isGuid);
 
             return this;
 
@@ -316,6 +331,7 @@ var OData = (function () {
          * @description Shorthand function for {@link Filter#equal(1)|equal}.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the equality check.
+         * @param boolean isGuid - A flag indicating whether or not the value is a GUID.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -336,6 +352,7 @@ var OData = (function () {
          * @description Check if the property value is not equal to the given value.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the inequality check.
+         * @param boolean isGuid - A flag indicating whether or not the value is a GUID.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -349,9 +366,9 @@ var OData = (function () {
          * @instance
          * @variation 2
          */
-        Filter.prototype.notEqual = function (lhs, rhs) {
+        Filter.prototype.notEqual = function (lhs, rhs, isGuid) {
 
-            join(lhs, 'ne', rhs);
+            join(lhs, 'ne', rhs, isGuid);
 
             return this;
 
@@ -362,6 +379,7 @@ var OData = (function () {
          * @description Shorthand function for {@link Filter#notEqual(1)|notEqual}.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the inequality check.
+         * @param boolean isGuid - A flag indicating whether or not the value is a GUID.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -840,33 +858,37 @@ var OData = (function () {
 
         }.bind(this);
 
-        var join = function (lhs, operator, rhs) {
+        var join = function (lhs, operator, rhs, isGuid) {
 
             if (lhs !== null && typeof rhs === 'undefined') {
-                _filter.push(joinArithmetic(operator, lhs));
+                _filter.push(joinArithmetic(operator, lhs, isGuid));
             } else {
-                _filter.push(joinLogical(lhs, operator, rhs));
+                _filter.push(joinLogical(lhs, operator, rhs, isGuid));
             }
 
         };
 
-        var joinLogical = function (lhs, operator, rhs) {
+        var joinLogical = function (lhs, operator, rhs, isGuid) {
 
-            return lhs + ' ' + operator + ' ' + '\'' + rhs + '\'';
+            return lhs + ' ' + operator + ' ' + (isGuid ? 'guid' : '') + '\'' + rhs + '\'';
 
         };
 
-        var joinArithmetic = function (lhs, operator, rhs) {
+        var joinArithmetic = function (lhs, operator, rhs, isGuid) {
 
-            if (typeof operator === typeof '') {
+            if (typeof operator === 'string') {
                 operator = '\'' + operator + '\'';
+
+                if (isGuid) {
+                    operator = 'guid' + operator;
+                }
             }
 
             return lhs + ' ' + operator + (rhs ? ' ' + rhs : '');
 
         };
 
-        if (typeof callback !== typeof Function) {
+        if (typeof callback !== 'function') {
             return this;
         }
 

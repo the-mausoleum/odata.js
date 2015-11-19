@@ -20,6 +20,8 @@
         var query = odata
             .filter(function (f) {
                 return f
+                    .eq('ID', 'ef0edcbc-52a3-4c92-87c9-c27a3c5536b8', true)
+                    .or()
                     .startGroup()
                         .substringOf('Name', 'John Smith')
                         .or()
