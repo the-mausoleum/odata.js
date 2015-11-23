@@ -304,7 +304,7 @@ var OData = (function () {
          * @description Check for equality between two objects.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the equality check.
-         * @param boolean isGuid - A flag indicating whether or not the value is a GUID.
+         * @param {String} dataType - The data type to use for the equality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -318,9 +318,9 @@ var OData = (function () {
          * @instance
          * @variation 2
          */
-        Filter.prototype.equal = function (lhs, rhs, isGuid) {
+        Filter.prototype.equal = function (lhs, rhs, dataType) {
 
-            join(lhs, 'eq', rhs, isGuid);
+            join(lhs, 'eq', rhs, dataType);
 
             return this;
 
@@ -331,7 +331,7 @@ var OData = (function () {
          * @description Shorthand function for {@link Filter#equal(1)|equal}.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the equality check.
-         * @param boolean isGuid - A flag indicating whether or not the value is a GUID.
+         * @param {String} dataType - The data type to use for the equality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -352,7 +352,7 @@ var OData = (function () {
          * @description Check if the property value is not equal to the given value.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the inequality check.
-         * @param boolean isGuid - A flag indicating whether or not the value is a GUID.
+         * @param {String} dataType - The data type to use for the equality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -366,9 +366,9 @@ var OData = (function () {
          * @instance
          * @variation 2
          */
-        Filter.prototype.notEqual = function (lhs, rhs, isGuid) {
+        Filter.prototype.notEqual = function (lhs, rhs, dataType) {
 
-            join(lhs, 'ne', rhs, isGuid);
+            join(lhs, 'ne', rhs, dataType);
 
             return this;
 
@@ -379,7 +379,7 @@ var OData = (function () {
          * @description Shorthand function for {@link Filter#notEqual(1)|notEqual}.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the inequality check.
-         * @param boolean isGuid - A flag indicating whether or not the value is a GUID.
+         * @param {String} dataType - The data type to use for the equality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -400,6 +400,7 @@ var OData = (function () {
          * @description Check if the property value is greater than the given value.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the inequality check.
+         * @param {String} dataType - The data type to use for the equality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -413,9 +414,9 @@ var OData = (function () {
          * @instance
          * @variation 2
          */
-        Filter.prototype.greaterThan = function (lhs, rhs) {
+        Filter.prototype.greaterThan = function (lhs, rhs, dataType) {
 
-            join(lhs, 'gt', rhs);
+            join(lhs, 'gt', rhs, dataType);
 
             return this;
 
@@ -426,6 +427,7 @@ var OData = (function () {
          * @description Shorthand function for {@link Filter#greaterThan(1)|greaterThan}.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the inequality check.
+         * @param {String} dataType - The data type to use for the equality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -446,6 +448,7 @@ var OData = (function () {
          * @description Check if the property value is greater than or equal to the given value.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the inequality check.
+         * @param {String} dataType - The data type to use for the equality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -459,9 +462,9 @@ var OData = (function () {
          * @instance
          * @variation 2
          */
-        Filter.prototype.greaterThanOrEqual = function (lhs, rhs) {
+        Filter.prototype.greaterThanOrEqual = function (lhs, rhs, dataType) {
 
-            join(lhs, 'ge', rhs);
+            join(lhs, 'ge', rhs, dataType);
 
             return this;
 
@@ -472,6 +475,7 @@ var OData = (function () {
          * @description Shorthand function for {@link Filter#greaterThanOrEqual(1)|greaterThanOrEqual}.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the inequality check.
+         * @param {String} dataType - The data type to use for the equality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -492,6 +496,7 @@ var OData = (function () {
          * @description Check if the property value is less than the given value.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the inequality check.
+         * @param {String} dataType - The data type to use for the equality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -505,9 +510,9 @@ var OData = (function () {
          * @instance
          * @variation 2
          */
-        Filter.prototype.lessThan = function (lhs, rhs) {
+        Filter.prototype.lessThan = function (lhs, rhs, dataType) {
 
-            join(lhs, 'lt', rhs);
+            join(lhs, 'lt', rhs, dataType);
 
             return this;
 
@@ -518,6 +523,7 @@ var OData = (function () {
          * @description Shorthand function for {@link Filter#lessThan(1)|lessThan}.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the inequality check.
+         * @param {String} dataType - The data type to use for the equality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -538,6 +544,7 @@ var OData = (function () {
          * @description Check if the property value is less than or equal to the given value.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the inequality check.
+         * @param {String} dataType - The data type to use for the equality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -551,9 +558,9 @@ var OData = (function () {
          * @instance
          * @variation 2
          */
-        Filter.prototype.lessThanOrEqual = function (lhs, rhs) {
+        Filter.prototype.lessThanOrEqual = function (lhs, rhs, dataType) {
 
-            join(lhs, 'le', rhs);
+            join(lhs, 'le', rhs, dataType);
 
             return this;
 
@@ -564,6 +571,7 @@ var OData = (function () {
          * @description Shorthand function for {@link Filter#lessThanOrEqual(1)|lessThanOrEqual}.
          * @param {String} property - The property to use.
          * @param {*} value - The value to use in the inequality check.
+         * @param {String} dataType - The data type to use for the equality check.
          * @memberof Filter
          * @instance
          * @variation 1
@@ -858,29 +866,29 @@ var OData = (function () {
 
         }.bind(this);
 
-        var join = function (lhs, operator, rhs, isGuid) {
+        var join = function (lhs, operator, rhs, dataType) {
 
             if (lhs !== null && typeof rhs === 'undefined') {
-                _filter.push(joinArithmetic(operator, lhs, isGuid));
+                _filter.push(joinArithmetic(operator, lhs, dataType));
             } else {
-                _filter.push(joinLogical(lhs, operator, rhs, isGuid));
+                _filter.push(joinLogical(lhs, operator, rhs, dataType));
             }
 
         };
 
-        var joinLogical = function (lhs, operator, rhs, isGuid) {
+        var joinLogical = function (lhs, operator, rhs, dataType) {
 
-            return lhs + ' ' + operator + ' ' + (isGuid ? 'guid' : '') + '\'' + rhs + '\'';
+            return lhs + ' ' + operator + ' ' + (dataType ? dataType : '') + '\'' + rhs + '\'';
 
         };
 
-        var joinArithmetic = function (lhs, operator, rhs, isGuid) {
+        var joinArithmetic = function (lhs, operator, rhs, dataType) {
 
             if (typeof operator === 'string') {
                 operator = '\'' + operator + '\'';
 
-                if (isGuid) {
-                    operator = 'guid' + operator;
+                if (dataType) {
+                    operator = dataType + operator;
                 }
             }
 
